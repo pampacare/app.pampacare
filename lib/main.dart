@@ -4,6 +4,9 @@ import 'package:pampacare/app/pages/splash/splash_page.dart';
 import 'package:pampacare/app/shared/container/injection.dart';
 import 'package:pampacare/app/shared/theme/app_colors.dart';
 
+import 'app/pages/options/options_page.dart';
+
+
 void main() {
   Injection().setup();
   runApp(MyApp());
@@ -22,6 +25,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/splash': (context) => SplashPage(),
         '/login': (context) => LoginPage(),
+        '/options': (context) => OptionsPage(),
       },
     );
   }

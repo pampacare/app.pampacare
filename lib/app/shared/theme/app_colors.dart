@@ -11,4 +11,5 @@ class AppColors {
   static const Color black = Color(0xFF000000);
   static const Color text = Color(0xFF455A64);
   static const Color hintText = Color(0xFF757575);
+  static const Color optionButton = Color(0xFFF3F3F3);
 }
