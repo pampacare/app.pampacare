@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pampacare/app/pages/components/default_button.dart';
 import 'package:pampacare/app/pages/components/default_text_field.dart';
+import 'package:pampacare/app/pages/dashboard/dashboard_page.dart';
 import 'package:pampacare/app/shared/theme/app_colors.dart';
 import 'package:pampacare/app/shared/theme/app_icons.dart';
 import 'package:pampacare/app/shared/theme/app_images.dart';
@@ -44,7 +45,14 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: ScreenSize.screenWidthSize(context) * 0.2,
               ),
-              DefaultButton(onPressed: () {}, title: 'ENTRAR'),
+              DefaultButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DashboardPage()),
+                    );
+                  },
+                  title: 'ENTRAR'),
               SizedBox(
                 height: 34,
               ),
