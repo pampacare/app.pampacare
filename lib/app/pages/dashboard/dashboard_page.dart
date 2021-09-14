@@ -27,7 +27,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   style: TextStyle(
                       color: AppColors.text,
                       fontSize: 28,
-                      fontWeight: FontWeight.w200)),
+                      fontWeight: FontWeight.w300)),
               SizedBox(height: 70),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
