@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pampacare/app/pages/components/default_button.dart';
-import 'package:pampacare/app/pages/components/default_text_field.dart';
 import 'package:pampacare/app/shared/theme/app_colors.dart';
 import 'package:pampacare/app/shared/theme/app_icons.dart';
-import 'package:pampacare/app/shared/theme/app_images.dart';
 import 'package:pampacare/app/shared/utils/screen_size.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -30,7 +27,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   style: TextStyle(
                       color: AppColors.text,
                       fontSize: 28,
-                      fontWeight: FontWeight.w300)),
+                      fontWeight: FontWeight.w200)),
               SizedBox(height: 70),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -38,20 +35,18 @@ class _DashboardPageState extends State<DashboardPage> {
                   TextButton(
                     onPressed: () {},
                     child: Container(
-                      height: MediaQuery.of(context).size.width / 2.8,
+                      height: MediaQuery.of(context).size.width / 2.3,
                       width: MediaQuery.of(context).size.width / 2.8,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30.0),
-                          bottomLeft: Radius.circular(30.0),
-                          bottomRight: Radius.circular(30.0),
-                          topRight: Radius.circular(30.0), // FLUTTER BUG FIX
-                        ),
-                      ),
                       child: Container(
-                        width: 157,
-                        height: 186,
-                        color: AppColors.purple,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30.0),
+                            bottomLeft: Radius.circular(30.0),
+                            bottomRight: Radius.circular(30.0),
+                            topRight: Radius.circular(30.0), // FLUTTER BUG FIX
+                          ),
+                          color: AppColors.purple,
+                        ),
                         child: Center(
                           child: RichText(
                             text: TextSpan(
@@ -82,18 +77,18 @@ class _DashboardPageState extends State<DashboardPage> {
                   TextButton(
                     onPressed: () {},
                     child: Container(
-                      height: MediaQuery.of(context).size.width / 2.8,
+                      height: MediaQuery.of(context).size.width / 2.3,
                       width: MediaQuery.of(context).size.width / 2.8,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30.0),
-                          bottomLeft: Radius.circular(30.0),
-                          bottomRight: Radius.circular(30.0),
-                          topRight: Radius.circular(30.0), // FLUTTER BUG FIX
-                        ),
-                      ),
                       child: Container(
-                        color: AppColors.primary70,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30.0),
+                            bottomLeft: Radius.circular(30.0),
+                            bottomRight: Radius.circular(30.0),
+                            topRight: Radius.circular(30.0), // FLUTTER BUG FIX
+                          ),
+                          color: AppColors.primary70,
+                        ),
                         child: Center(
                           child: RichText(
                             text: TextSpan(
@@ -139,18 +134,18 @@ class _DashboardPageState extends State<DashboardPage> {
                   TextButton(
                     onPressed: () {},
                     child: Container(
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          bottomLeft: Radius.circular(30),
-                          bottomRight: Radius.circular(30),
-                          topRight: Radius.circular(30), // FLUTTER BUG FIX
-                        ),
-                      ),
-                      height: MediaQuery.of(context).size.width / 2.8,
+                      height: MediaQuery.of(context).size.width / 2.3,
                       width: MediaQuery.of(context).size.width / 2.8,
                       child: Container(
-                        color: AppColors.blue,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            bottomLeft: Radius.circular(30),
+                            bottomRight: Radius.circular(30),
+                            topRight: Radius.circular(30), // FLUTTER BUG FIX
+                          ),
+                          color: AppColors.blue,
+                        ),
                         child: Center(
                             child: RichText(
                           text: TextSpan(
@@ -185,18 +180,18 @@ class _DashboardPageState extends State<DashboardPage> {
                   TextButton(
                     onPressed: () {},
                     child: Container(
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          bottomLeft: Radius.circular(30),
-                          bottomRight: Radius.circular(30),
-                          topRight: Radius.circular(30), // FLUTTER BUG FIX
-                        ),
-                      ),
-                      height: MediaQuery.of(context).size.width / 2.8,
+                      height: MediaQuery.of(context).size.width / 2.3,
                       width: MediaQuery.of(context).size.width / 2.8,
                       child: Container(
-                        color: AppColors.grey10,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            bottomLeft: Radius.circular(30),
+                            bottomRight: Radius.circular(30),
+                            topRight: Radius.circular(30), // FLUTTER BUG FIX
+                          ),
+                          color: AppColors.grey10,
+                        ),
                         child: Center(
                           child: RichText(
                             text: TextSpan(
