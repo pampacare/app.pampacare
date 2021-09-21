@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pampacare/app/pages/components/option_button.dart';
-import 'package:pampacare/app/shared/theme/app_colors.dart';
+import 'package:pampacare/app/pages/components/title_subtitle_component.dart';
 import 'package:pampacare/app/shared/theme/app_icons.dart';
 
 class OptionsPage extends StatefulWidget {
@@ -19,18 +19,8 @@ class _OptionsPageState extends State<OptionsPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Certo, agora',
-                    style: TextStyle(color: AppColors.primary, fontSize: 28)),
-                Text('selecione uma opção.',
-                    style: TextStyle(
-                        color: AppColors.text,
-                        fontSize: 28,
-                        fontWeight: FontWeight.w300)),
-              ],
-            ),
+            TitleSubtitleComponent(
+                title: 'Certo, agora', subtitle: 'selecione uma opção.'),
             Column(
               children: [
                 OptionButton(
