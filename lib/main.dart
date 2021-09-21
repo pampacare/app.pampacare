@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pampacare/app/pages/appointment/appointment_details_page.dart';
 import 'package:pampacare/app/pages/login/login_page.dart';
 import 'package:pampacare/app/pages/splash/splash_page.dart';
 import 'package:pampacare/app/shared/container/injection.dart';
 import 'package:pampacare/app/shared/theme/app_colors.dart';
 
 import 'app/pages/options/options_page.dart';
-
 
 void main() {
   Injection().setup();
@@ -21,11 +21,12 @@ class MyApp extends StatelessWidget {
         backgroundColor: AppColors.white,
         primaryColor: AppColors.primary,
       ),
-      initialRoute: '/splash',
+      initialRoute: '/appointment',
       routes: {
         '/splash': (context) => SplashPage(),
         '/login': (context) => LoginPage(),
         '/options': (context) => OptionsPage(),
+        '/appointment': (context) => AppointmentDetailsPage(),
       },
     );
   }
