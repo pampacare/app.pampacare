@@ -5,8 +5,10 @@ import 'package:pampacare/app/shared/theme/app_colors.dart';
 class DefaultTextField extends StatefulWidget {
   final String? hint;
   final String? icon;
+  final bool withPadding;
   final void Function(String)? onChanged;
-  const DefaultTextField({Key? key, this.hint, this.icon, this.onChanged})
+  const DefaultTextField(
+      {Key? key, this.hint, this.icon, this.onChanged, this.withPadding = true})
       : super(key: key);
 
   @override
@@ -17,7 +19,7 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 30),
+      margin: EdgeInsets.symmetric(horizontal: widget.withPadding ? 30 : 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: AppColors.textField,
