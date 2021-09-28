@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pampacare/app/pages/components/default_button.dart';
-import 'package:pampacare/app/pages/components/default_text_field.dart';
+import 'package:pampacare/app/pages/login/components/keyboard_component.dart';
+import 'package:pampacare/app/pages/login/components/status_pin_code_component.dart';
 import 'package:pampacare/app/shared/theme/app_colors.dart';
-import 'package:pampacare/app/shared/theme/app_icons.dart';
 import 'package:pampacare/app/shared/theme/app_images.dart';
 import 'package:pampacare/app/shared/utils/screen_size.dart';
 
@@ -25,26 +24,22 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Text('Olá',
                   style: TextStyle(color: AppColors.text, fontSize: 28)),
-              Text('faça login',
+              Text('digite o PIN',
                   style: TextStyle(
                       color: AppColors.text,
                       fontSize: 28,
                       fontWeight: FontWeight.w300)),
               SizedBox(
-                height: ScreenSize.screenWidthSize(context) * 0.2,
+                height: 36,
               ),
-              DefaultTextField(hint: 'Usuário', icon: AppIcons.users),
+              StatusPinCodeComponent(lenght: 3),
               SizedBox(
-                height: 24,
+                height: 37,
               ),
-              DefaultTextField(
-                hint: 'Senha',
-                icon: AppIcons.unlock,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: KeyboardComponent(),
               ),
-              SizedBox(
-                height: ScreenSize.screenWidthSize(context) * 0.2,
-              ),
-              DefaultButton(onPressed: () {}, title: 'ENTRAR'),
               SizedBox(
                 height: 34,
               ),

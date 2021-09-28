@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: AppColors.white,
         primaryColor: AppColors.primary,
       ),
-      initialRoute: '/register-dog',
+      initialRoute: '/login',
       routes: {
         '/splash': (context) => SplashPage(),
         '/login': (context) => LoginPage(),
