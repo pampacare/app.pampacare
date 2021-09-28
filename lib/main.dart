@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: AppColors.white,
         primaryColor: AppColors.primary,
       ),
-      initialRoute: '/search',
+      initialRoute: '/splash',
       routes: {
         '/splash': (context) => SplashPage(),
         '/login': (context) => LoginPage(),
