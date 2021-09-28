@@ -4,6 +4,7 @@ import 'package:pampacare/app/pages/login/login_page.dart';
 import 'package:pampacare/app/pages/splash/splash_page.dart';
 
 import 'package:pampacare/app/pages/historic/historic_page.dart';
+import  'package:pampacare/app/pages/treatments/treatments_page.dart';
 
 import 'package:pampacare/app/shared/container/injection.dart';
 import 'package:pampacare/app/shared/theme/app_colors.dart';
@@ -24,13 +25,16 @@ class MyApp extends StatelessWidget {
         backgroundColor: AppColors.white,
         primaryColor: AppColors.primary,
       ),
-      initialRoute: '/appointment',
+      initialRoute: '/treatments',
       routes: {
         '/splash': (context) => SplashPage(),
         '/login': (context) => LoginPage(),
         '/options': (context) => OptionsPage(),
         '/appointment': (context) => AppointmentDetailsPage(),
         '/historic' : (context) => HistoricPage(),
+        '/treatments' : (context) => TreatmentsPage(),
+
+
       },
     );
   }
