@@ -31,16 +31,12 @@ class _TreatmentsPageState extends State<TreatmentsPage> {
                     SizedBox(height: 70,),                
                 Column(
                   children: [
-                   
-                   
-                    SizedBox(height: 30),
-                  Row(
-                      children: [
-                    OptionButton(
-                        onPressed: () {},
-                        title: 'Cadastrar nova consulta',
-                        ),
-                        ]),
+                    TitleSubtitleComponent(
+                    title: ' ', subtitle: 'Testes realizados'),
+                    SizedBox(height: 70,),        
+               
+
+                 
                   ],
                 ),
                  Image.asset(
