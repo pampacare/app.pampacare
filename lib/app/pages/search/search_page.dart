@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -21,6 +20,7 @@ class _SearchPageState extends State<SearchPage> {
   final _debouncer = Debouncer(milliseconds: 1500);
   bool isLoading = false;
   List<Dogs> dogs = [];
+  List<Dog> dog = [];
 
   @override
   void dispose() {
@@ -57,13 +57,28 @@ class _SearchPageState extends State<SearchPage> {
             ),
             SizedBox(),
             if (isLoading)
-              CircularProgressIndicator()
+              Center(child: CircularProgressIndicator())
             else
               Column(
                   children: dogs.map((dog) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(dog.street),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        children: dog.dog.map((dogOfList) {
+                          return Text(dogOfList.name,
+                              style: TextStyle(
+                                  color: AppColors.primary, fontSize: 18));
+                        }).toList(),
+                      ),
+                      Text(
+                        dog.street,
+                      ),
+                      SizedBox(height: 10),
+                    ],
+                  ),
                 );
               }).toList())
           ],
@@ -92,28 +107,43 @@ class _SearchPageState extends State<SearchPage> {
       setState(() {
         isLoading = false;
       });
-      throw Exception('Failed to load album');
+      throw Exception('Failed to load');
     }
   }
 }
 
 class Dogs {
   final String street;
+  final List<Dog> dog;
 
-  Dogs({required this.street});
+  Dogs({required this.street, required this.dog});
 
   factory Dogs.fromJson(Map<String, dynamic> json) {
-    return Dogs(
-      street: json['street'],
-    );
+    return Dogs(street: json['street'], dog: Dog.fromArray(json['dog']));
   }
 
   static List<Dogs> fromArray(List<dynamic> list) =>
       list.map((element) => Dogs.fromJson(element)).toList();
 
   Map<String, dynamic> toMap() {
-    return {
-      'street': street,
-    };
+    return {'street': street, 'dog': dog};
+  }
+}
+
+class Dog {
+  final String name;
+  final int breed;
+
+  Dog({required this.name, required this.breed});
+
+  factory Dog.fromJson(Map<String, dynamic> json) {
+    return Dog(name: json['name'], breed: json['breed_id']);
+  }
+
+  static List<Dog> fromArray(List<dynamic> list) =>
+      list.map((element) => Dog.fromJson(element)).toList();
+
+  Map<String, dynamic> toMap() {
+    return {'name': name, 'breed_id': breed};
   }
 }
