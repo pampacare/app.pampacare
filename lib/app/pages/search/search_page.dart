@@ -67,16 +67,22 @@ class _SearchPageState extends State<SearchPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Column(
-                        children: dog.dog.map((dogOfList) {
-                          return Text(dogOfList.name,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: dog.dog.map(
+                          (dogOfList) {
+                            return Text(
+                              dogOfList.name,
                               style: TextStyle(
-                                  color: AppColors.primary, fontSize: 18));
-                        }).toList(),
+                                  color: AppColors.primary, fontSize: 18),
+                            );
+                          },
+                        ).toList(),
                       ),
+                      SizedBox(height: 10),
                       Text(
                         dog.street,
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 20),
                     ],
                   ),
                 );
