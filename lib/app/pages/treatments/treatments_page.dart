@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pampacare/app/pages/components/default_button.dart';
-import 'package:pampacare/app/pages/components/default_text_field.dart';
 import 'package:pampacare/app/pages/components/title_subtitle_component.dart';
 import 'package:pampacare/app/pages/treatments/components/check_gender_component.dart';
 import 'package:pampacare/app/shared/utils/screen_size.dart';
@@ -29,14 +28,11 @@ class _TreatmentsPageState extends State<TreatmentsPage> {
                   SizedBox(
                     height: 32,
                   ),
-                 
                   SizedBox(
                     height: 64,
                   ),
-                  
-                   TitleSubtitleComponent(
-                      title: "",
-                      subtitle: "Testes realizados"),
+                  TitleSubtitleComponent(
+                      title: "", subtitle: "Testes realizados"),
                   SizedBox(
                     height: 32,
                   ),
