@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:pampacare/app/pages/login/components/keyboard_number_component.dart';
 
 class KeyboardComponent extends StatelessWidget {
-  const KeyboardComponent({Key? key}) : super(key: key);
+  final void Function(String) onTap;
+  const KeyboardComponent({
+    Key? key,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +17,8 @@ class KeyboardComponent extends StatelessWidget {
       children: List.generate(
           9,
           (index) => KeyboardNumberComponent(
-                number: index,
+                number: index + 1,
+                onTap: () => onTap((index + 1).toString()),
               )),
     );
   }

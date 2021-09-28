@@ -12,25 +12,25 @@ class StatusPinCodeComponent extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CircleStatusComponent(
-          status: true,
+          status: lenght >= 1,
         ),
         SizedBox(
           width: 16,
         ),
         CircleStatusComponent(
-          status: true,
+          status: lenght >= 2,
         ),
         SizedBox(
           width: 16,
         ),
         CircleStatusComponent(
-          status: false,
+          status: lenght >= 3,
         ),
         SizedBox(
           width: 16,
         ),
         CircleStatusComponent(
-          status: false,
+          status: lenght >= 4,
         )
       ],
     );

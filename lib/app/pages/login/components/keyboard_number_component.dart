@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:pampacare/app/shared/theme/app_colors.dart';
 import 'package:pampacare/app/shared/utils/screen_size.dart';
 
 class KeyboardNumberComponent extends StatelessWidget {
   final int number;
+  final void Function() onTap;
   const KeyboardNumberComponent({
     Key? key,
     required this.number,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -15,11 +18,7 @@ class KeyboardNumberComponent extends StatelessWidget {
       height: ScreenSize.screenWidthSize(context) * 0.2,
       width: ScreenSize.screenWidthSize(context) * 0.2,
       child: TextButton(
-        onPressed: () {},
-        // decoration: BoxDecoration(
-        //   shape: BoxShape.circle,
-        //   border: Border.all(color: AppColors.primary, width: 1)
-        // ),
+        onPressed: onTap,
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.resolveWith((states) {
               if (states.contains(MaterialState.pressed)) {
