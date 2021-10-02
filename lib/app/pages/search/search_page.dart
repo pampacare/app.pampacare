@@ -60,33 +60,37 @@ class _SearchPageState extends State<SearchPage> {
               Center(child: CircularProgressIndicator())
             else
               Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: dogs.map((dog) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
                         children: dog.dog.map(
                           (dogOfList) {
-                            return Text(
-                              dogOfList.name,
-                              style: TextStyle(
-                                  color: AppColors.primary, fontSize: 18),
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  dogOfList.name,
+                                  style: TextStyle(
+                                      color: AppColors.primary, fontSize: 18),
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  dog.street,
+                                ),
+                                SizedBox(height: 20),
+                                Divider(
+                                  height: 1,
+                                  color: AppColors.hintText,
+                                ),
+                              ],
                             );
                           },
                         ).toList(),
                       ),
-                      SizedBox(height: 10),
-                      Text(
-                        dog.street,
-                      ),
-                      SizedBox(height: 20),
-                    ],
-                  ),
-                );
-              }).toList())
+                    );
+                  }).toList()),
           ],
         ),
       ),
