@@ -31,7 +31,7 @@ class _OptionsPageState extends State<OptionsPage> {
                 SizedBox(height: 30),
                 OptionButton(
                     onPressed: () {},
-                    title: 'Cadastrar nova consulta',
+                    title: 'Declarar óbito do animal',
                     icon: AppIcons.rip),
               ],
             ),
