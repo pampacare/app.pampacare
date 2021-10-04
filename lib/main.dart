@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pampacare/app/pages/appointment/appointment_details_page.dart';
-import 'package:pampacare/app/pages/home/home_page.dart';
 import 'package:pampacare/app/pages/login/login_page.dart';
 import 'package:pampacare/app/pages/register_dog/register_dog_page.dart';
 import 'package:pampacare/app/pages/search/search_page.dart';
@@ -12,6 +11,7 @@ import 'package:pampacare/app/pages/treatments/treatments_page.dart';
 import 'package:pampacare/app/shared/container/injection.dart';
 import 'package:pampacare/app/shared/theme/app_colors.dart';
 
+import 'app/pages/dashboard/dashboard_page.dart';
 import 'app/pages/options/options_page.dart';
 
 void main() {
@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/splash',
       routes: {
         '/splash': (context) => SplashPage(),
+        '/dashboard': (context) => DashboardPage(),
         '/login': (context) => LoginPage(),
-        '/home': (context) => HomePage(),
         '/options': (context) => OptionsPage(),
         '/appointment': (context) => AppointmentDetailsPage(),
         '/historic': (context) => HistoricPage(),
