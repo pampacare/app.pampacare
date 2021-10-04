@@ -7,6 +7,7 @@ class AppIcons {
   static String get users => '$path/users.$svg';
   static String get character => '$path/character.$svg';
   static String get dog => '$path/dog.$svg';
+  static String get dogSearch => '$path/search_dog.$svg';
   static String get door => '$path/door.$svg';
   static String get location => '$path/location.$svg';
   static String get dogDash => '$path/dog_dash.$svg';

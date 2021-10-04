@@ -52,7 +52,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   text: 'Relatórios',
                   illustration: AppIcons.character,
                   onTap: () {
-                    Navigator.pushNamed(context, '/search');
+                    Navigator.pushNamed(context, '/register-dog');
                   },
                 ),
                 DashButtonComponent(
