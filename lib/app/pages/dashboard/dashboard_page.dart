@@ -53,7 +53,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               children: [
                                 WidgetSpan(
                                   child: SvgPicture.asset(
-                                    AppIcons.dog,
+                                    AppIcons.dogDash,
                                   ),
                                 ),
                                 TextSpan(
