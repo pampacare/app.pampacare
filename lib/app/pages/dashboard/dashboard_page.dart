@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pampacare/app/pages/dashboard/components/dash_button_component.dart';
 import 'package:pampacare/app/shared/theme/app_colors.dart';
 import 'package:pampacare/app/shared/theme/app_icons.dart';
 import 'package:pampacare/app/shared/utils/screen_size.dart';
@@ -15,222 +16,59 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: ScreenSize.screenHeightSize(context),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Olá',
-                  style: TextStyle(color: AppColors.text, fontSize: 28)),
-              Text('O que deseja fazer?',
-                  style: TextStyle(
-                      color: AppColors.text,
-                      fontSize: 28,
-                      fontWeight: FontWeight.w300)),
-              SizedBox(height: 70),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  TextButton(
-                    onPressed: () {},
-                    child: Container(
-                      height: MediaQuery.of(context).size.width / 2.3,
-                      width: MediaQuery.of(context).size.width / 2.8,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30.0),
-                            bottomLeft: Radius.circular(30.0),
-                            bottomRight: Radius.circular(30.0),
-                            topRight: Radius.circular(30.0), // FLUTTER BUG FIX
-                          ),
-                          color: AppColors.purple,
-                        ),
-                        child: Center(
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                WidgetSpan(
-                                  child: SvgPicture.asset(
-                                    AppIcons.dogDash,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: "\n\n",
-                                  style: TextStyle(
-                                      color: AppColors.white, fontSize: 20),
-                                ),
-                                TextSpan(
-                                  text: "Consulta",
-                                  style: TextStyle(
-                                      color: AppColors.white, fontSize: 20),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  TextButton(
-                    onPressed: () {},
-                    child: Container(
-                      height: MediaQuery.of(context).size.width / 2.3,
-                      width: MediaQuery.of(context).size.width / 2.8,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30.0),
-                            bottomLeft: Radius.circular(30.0),
-                            bottomRight: Radius.circular(30.0),
-                            topRight: Radius.circular(30.0), // FLUTTER BUG FIX
-                          ),
-                          color: AppColors.primary70,
-                        ),
-                        child: Center(
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: " ",
-                                  style: TextStyle(
-                                      color: AppColors.white, fontSize: 20),
-                                ),
-                                WidgetSpan(
-                                  child: SvgPicture.asset(
-                                    AppIcons.location,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: "\n\n",
-                                  style: TextStyle(
-                                      color: AppColors.white, fontSize: 20),
-                                ),
-                                TextSpan(
-                                  text: "Áreas",
-                                  style: TextStyle(
-                                      color: AppColors.white, fontSize: 20),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
+      body: Center(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              SizedBox(),
+              Column(
+                children: [
+                  Text('Olá',
+                      style: TextStyle(color: AppColors.text, fontSize: 28)),
+                  Text('O que deseja fazer?',
+                      style: TextStyle(
+                          color: AppColors.text,
+                          fontSize: 28,
+                          fontWeight: FontWeight.w300)),
                 ],
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  TextButton(
-                    onPressed: () {},
-                    child: Container(
-                      height: MediaQuery.of(context).size.width / 2.3,
-                      width: MediaQuery.of(context).size.width / 2.8,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            bottomLeft: Radius.circular(30),
-                            bottomRight: Radius.circular(30),
-                            topRight: Radius.circular(30), // FLUTTER BUG FIX
-                          ),
-                          color: AppColors.blue,
-                        ),
-                        child: Center(
-                            child: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: "  ",
-                                style: TextStyle(
-                                    color: AppColors.white, fontSize: 20),
-                              ),
-                              WidgetSpan(
-                                child: SvgPicture.asset(
-                                  AppIcons.character,
-                                ),
-                              ),
-                              TextSpan(
-                                text: "\n\n",
-                                style: TextStyle(
-                                    color: AppColors.white, fontSize: 20),
-                              ),
-                              TextSpan(
-                                text: "Relatórios",
-                                style: TextStyle(
-                                    color: AppColors.white, fontSize: 20),
-                              ),
-                            ],
-                          ),
-                        )),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  TextButton(
-                    onPressed: () {},
-                    child: Container(
-                      height: MediaQuery.of(context).size.width / 2.3,
-                      width: MediaQuery.of(context).size.width / 2.8,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            bottomLeft: Radius.circular(30),
-                            bottomRight: Radius.circular(30),
-                            topRight: Radius.circular(30), // FLUTTER BUG FIX
-                          ),
-                          color: AppColors.grey10,
-                        ),
-                        child: Center(
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: " ",
-                                  style: TextStyle(
-                                      color: AppColors.white, fontSize: 20),
-                                ),
-                                WidgetSpan(
-                                  child: SvgPicture.asset(
-                                    AppIcons.door,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: "\n\n",
-                                  style: TextStyle(
-                                      color: AppColors.white, fontSize: 20),
-                                ),
-                                TextSpan(
-                                  text: "     Sair",
-                                  style: TextStyle(
-                                      color: AppColors.text, fontSize: 20),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+              Wrap(spacing: 21, runSpacing: 21, children: <Widget>[
+                DashButtonComponent(
+                  color: Color(0xFFBA68C8),
+                  text: 'Consultas',
+                  illustration: AppIcons.dogDash,
+                  onTap: () {
+                    Navigator.pushNamed(context, '/historic');
+                  },
+                ),
+                DashButtonComponent(
+                  color: Color(0xFFE3576C),
+                  text: 'Áreas',
+                  illustration: AppIcons.location,
+                  onTap: () {
+                    Navigator.pushNamed(context, '/search');
+                  },
+                ),
+                DashButtonComponent(
+                  color: Color(0xFF94B5FF),
+                  text: 'Relatórios',
+                  illustration: AppIcons.character,
+                  onTap: () {
+                    Navigator.pushNamed(context, '/search');
+                  },
+                ),
+                DashButtonComponent(
+                  color: Color(0xFFF5F5F5),
+                  text: 'Sair',
+                  textBlack: true,
+                  illustration: AppIcons.door,
+                  onTap: () {
+                    Navigator.pushNamed(context, '/login');
+                  },
+                ),
+              ]),
+              SizedBox(),
+            ]),
       ),
     );
   }

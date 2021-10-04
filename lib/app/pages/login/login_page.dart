@@ -74,8 +74,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                     pin += value;
                   });
                   if (pin.length >= 4) {
-                    if (pin == "6969") {
-                      Navigator.pushReplacementNamed(context, '/home');
+                    if (pin == "6485") {
+                      Navigator.pushReplacementNamed(context, '/dashboard');
                     } else {
                       setState(() {
                         pin = '';
