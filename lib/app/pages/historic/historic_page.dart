@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pampacare/app/pages/components/add_button.dart';
-import 'package:pampacare/app/pages/components/option_button.dart';
 import 'package:pampacare/app/pages/components/title_subtitle_component.dart';
-import 'package:pampacare/app/shared/theme/app_icons.dart';
 import 'package:pampacare/app/shared/theme/app_images.dart';
 
 class HistoricPage extends StatefulWidget {
@@ -24,31 +22,40 @@ class _HistoricPageState extends State<HistoricPage> {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                SizedBox(
+                  height: 50,
+                ),
                 TitleSubtitleComponent(
                     title: 'Aqui está tudo sobre', subtitle: 'o Caramelo.'),
-                    SizedBox(height: 70,),                
+                SizedBox(
+                  height: 70,
+                ),
                 Column(
                   children: [
                     AddButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/options');
+                      },
                       title: 'Adicionar nova consulta',
-                    
                     ),
                     SizedBox(height: 30),
-                  Row(
-                      children: [
-                    OptionButton(
-                        onPressed: () {},
-                        title: 'Cadastrar nova consulta',
-                        ),
-                        ]),
+                    // Row(children: [
+                    //   OptionButton(
+                    //     onPressed: () {
+                    //       Navigator.pushNamed(context, '/options');
+                    //     },
+                    //     title: 'Consulta',
+                    //   ),
+                    // ]),
                   ],
                 ),
-                 Image.asset(
-                AppImages.dog,
-                fit: BoxFit.contain,
-              ),
-               
+                SizedBox(
+                  height: 50,
+                ),
+                Image.asset(
+                  AppImages.dog,
+                  fit: BoxFit.contain,
+                ),
               ],
             ),
           ],
