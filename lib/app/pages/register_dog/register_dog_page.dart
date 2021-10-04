@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:pampacare/app/pages/components/default_button.dart';
 import 'package:pampacare/app/pages/components/default_text_field.dart';
 import 'package:pampacare/app/pages/components/title_subtitle_component.dart';
+import 'package:pampacare/app/pages/register_dog/components/check_collar_component.dart';
 import 'package:pampacare/app/pages/register_dog/components/check_gender_component.dart';
+import 'package:pampacare/app/pages/register_dog/controller/register_dog_controller.dart';
+import 'package:pampacare/app/shared/enum/dog_gender_enum.dart';
 import 'package:pampacare/app/shared/utils/screen_size.dart';
 
 class RegisterDogPage extends StatefulWidget {
@@ -13,6 +17,8 @@ class RegisterDogPage extends StatefulWidget {
 }
 
 class _RegisterDogPageState extends State<RegisterDogPage> {
+  final IRegisterDogController controller = GetIt.I<IRegisterDogController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,28 +54,49 @@ class _RegisterDogPageState extends State<RegisterDogPage> {
                     hint: "Ano de nascimento",
                   ),
                   SizedBox(
-                    height: 16,
+                    height: 25,
                   ),
-                  DefaultTextField(
-                    withPadding: false,
-                    hint: "Usa coleira",
+                  CheckCollarComponent(
+                    title: "O animal usa coleira ?",
+                    onChanged: () {
+                      setState(() {
+                        controller.setHasCollar(!controller.getHasCollar());
+                      });
+                    },
+                    value: controller.getHasCollar(),
                   ),
                   SizedBox(
-                    height: 16,
+                    height: 25,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       CheckGenderComponent(
-                          title: "Macho", value: true, onChanged: () {}),
+                          title: "Macho",
+                          value: controller.getGender().isMale,
+                          onChanged: () {
+                            setState(() {
+                              controller.setGender(DogGenderEnum.male);
+                            });
+                          }),
                       CheckGenderComponent(
-                          title: "Fêmea", value: false, onChanged: () {}),
+                          title: "Fêmea",
+                          value: !controller.getGender().isMale,
+                          onChanged: () {
+                            setState(() {
+                              controller.setGender(DogGenderEnum.female);
+                            });
+                          }),
                     ],
                   ),
                   SizedBox(
                     height: 50,
                   ),
-                  DefaultButton(onPressed: () {}, title: "Cadastrar")
+                  DefaultButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/search-owner');
+                      },
+                      title: "Cadastrar")
                 ]),
           )),
     );
