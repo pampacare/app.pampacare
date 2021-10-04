@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pampacare/app/pages/appointment/appointment_details_page.dart';
+import 'package:pampacare/app/pages/home/home_page.dart';
 import 'package:pampacare/app/pages/login/login_page.dart';
 import 'package:pampacare/app/pages/register_dog/register_dog_page.dart';
 import 'package:pampacare/app/pages/search/search_page.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/splash': (context) => SplashPage(),
         '/login': (context) => LoginPage(),
+        '/home': (context) => HomePage(),
         '/options': (context) => OptionsPage(),
         '/appointment': (context) => AppointmentDetailsPage(),
         '/historic': (context) => HistoricPage(),
