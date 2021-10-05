@@ -1,16 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:pampacare/app/pages/appointment/controller/appointment_controller.dart';
+
 import 'package:pampacare/app/pages/components/add_button.dart';
 import 'package:pampacare/app/pages/components/title_subtitle_component.dart';
+import 'package:pampacare/app/pages/options/options_page.dart';
+import 'package:pampacare/app/shared/models/dogs.dart';
 import 'package:pampacare/app/shared/theme/app_images.dart';
 
 class HistoricPage extends StatefulWidget {
-  const HistoricPage({Key? key}) : super(key: key);
+  final Dog dog;
+  const HistoricPage({
+    Key? key,
+    required this.dog,
+  }) : super(key: key);
 
   @override
   _HistoricPageState createState() => _HistoricPageState();
 }
 
 class _HistoricPageState extends State<HistoricPage> {
+  final AppointmentController controller = GetIt.I<AppointmentController>();
+
+  @override
+  void initState() {
+    controller.dog = widget.dog;
+    super.initState();
+    controller.getHistoric().then((value) {
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +46,8 @@ class _HistoricPageState extends State<HistoricPage> {
                   height: 50,
                 ),
                 TitleSubtitleComponent(
-                    title: 'Aqui está tudo sobre', subtitle: 'o Caramelo.'),
+                    title: 'Aqui está tudo sobre',
+                    subtitle: 'o ${controller.dog!.name}.'),
                 SizedBox(
                   height: 70,
                 ),
@@ -34,7 +55,13 @@ class _HistoricPageState extends State<HistoricPage> {
                   children: [
                     AddButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/options');
+                        //print(widget.dog!.toMap());
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => OptionsPage(
+                                      dog: widget.dog,
+                                    )));
                       },
                       title: 'Adicionar nova consulta',
                     ),
@@ -52,6 +79,12 @@ class _HistoricPageState extends State<HistoricPage> {
                 SizedBox(
                   height: 50,
                 ),
+                if (controller.historicList.isNotEmpty)
+                  Column(
+                    children: controller.historicList
+                        .map((e) => Text(e.observation))
+                        .toList(),
+                  ),
                 Image.asset(
                   AppImages.dog,
                   fit: BoxFit.contain,
