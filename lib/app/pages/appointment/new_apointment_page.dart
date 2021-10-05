@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:pampacare/app/pages/appointment/add_symptoms_page.dart';
+import 'package:pampacare/app/pages/appointment/controller/appointment_controller.dart';
 
 import 'package:pampacare/app/pages/components/default_button.dart';
 import 'package:pampacare/app/pages/components/default_text_field.dart';
@@ -21,6 +23,7 @@ class NewAppointmentPage extends StatefulWidget {
 }
 
 class _NewAppointmentPageState extends State<NewAppointmentPage> {
+  final AppointmentController controller = GetIt.I<AppointmentController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,16 +52,11 @@ class _NewAppointmentPageState extends State<NewAppointmentPage> {
                   ),
                   DefaultTextField(
                     withPadding: false,
-                    icon: AppIcons.calendar,
-                    hint: "Data da consulta",
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  DefaultTextField(
-                    withPadding: false,
                     icon: AppIcons.users,
                     hint: "Observações (opcional)",
+                    onChanged: (value) {
+                      controller.observations = value;
+                    },
                   ),
                   SizedBox(
                     height: 25,

@@ -54,14 +54,31 @@ class _AddSymptomsPageState extends State<AddSymptomsPage> {
                 runSpacing: 8,
                 spacing: 8,
                 children: controller.symptomsList
-                    .map((e) => SymptomsCheckComponent(symptom: e))
+                    .map((e) => SymptomsCheckComponent(
+                          isChecked: controller.symptomsDog.contains(e),
+                          symptom: e,
+                          onTap: () {
+                            setState(() {
+                              if (controller.symptomsDog.contains(e)) {
+                                controller.symptomsDog.remove(e);
+                              } else {
+                                controller.symptomsDog.add(e);
+                              }
+                            });
+                          },
+                        ))
                     .toList(),
               ),
             ),
             SizedBox(
               height: 50,
             ),
-            Center(child: DefaultButton(onPressed: () {}, title: "PRÓXIMO"))
+            Center(
+                child: DefaultButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/tests');
+                    },
+                    title: "PRÓXIMO"))
           ],
         ),
       ),

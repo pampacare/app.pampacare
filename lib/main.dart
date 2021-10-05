@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pampacare/app/pages/appointment/appointment_details_page.dart';
+import 'package:pampacare/app/pages/appointment/tests_page.dart';
 import 'package:pampacare/app/pages/login/login_page.dart';
 import 'package:pampacare/app/pages/register_dog/register_dog_page.dart';
 import 'package:pampacare/app/pages/register_dog/register_owner.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         '/register-owner': (context) => RegisterOwnerPage(),
         '/search-dog': (context) => SearchDogPage(),
         '/search-owner': (context) => SearchOwnerPage(),
+        '/tests': (context) => TestsPage(),
         //'/new-appointment': (context) => NewAppointmentPage(),
       },
     );
