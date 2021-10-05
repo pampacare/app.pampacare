@@ -3,7 +3,7 @@ import 'package:pampacare/app/pages/appointment/appointment_details_page.dart';
 import 'package:pampacare/app/pages/login/login_page.dart';
 import 'package:pampacare/app/pages/register_dog/register_dog_page.dart';
 import 'package:pampacare/app/pages/register_dog/search_owner_page.dart';
-import 'package:pampacare/app/pages/search/search_page.dart';
+import 'package:pampacare/app/pages/search_dog/search_dog_page.dart';
 import 'package:pampacare/app/pages/splash/splash_page.dart';
 
 import 'package:pampacare/app/pages/historic/historic_page.dart';
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         '/historic': (context) => HistoricPage(),
         '/treatments': (context) => TreatmentsPage(),
         '/register-dog': (context) => RegisterDogPage(),
-        '/search': (context) => SearchPage(),
+        '/search-dog': (context) => SearchDogPage(),
         '/search-owner': (context) => SearchOwnerPage(),
       },
     );
