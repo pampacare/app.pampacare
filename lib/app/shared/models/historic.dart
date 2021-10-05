@@ -4,16 +4,12 @@ class Historic {
   String observation;
   bool lvc;
   String timeStamp;
-  Historic({
-    required this.observation,
-    required this.lvc,
-    required this.timeStamp
-  });
-
-  
+  Historic(
+      {required this.observation, required this.lvc, required this.timeStamp});
 
   @override
-  String toString() => 'Historic(observation: $observation, lvc: $lvc, timeStamp: $timeStamp)';
+  String toString() =>
+      'Historic(observation: $observation, lvc: $lvc, timeStamp: $timeStamp)';
 
   Map<String, dynamic> toMap() {
     return {
@@ -31,11 +27,11 @@ class Historic {
     );
   }
 
-
   static List<Historic> fromArray(List<dynamic> list) =>
       list.map((e) => Historic.fromMap(e)).toList();
 
   String toJson() => json.encode(toMap());
 
-  factory Historic.fromJson(String source) => Historic.fromMap(json.decode(source));
+  factory Historic.fromJson(String source) =>
+      Historic.fromMap(json.decode(source));
 }
