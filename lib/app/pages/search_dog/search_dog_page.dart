@@ -6,17 +6,18 @@ import 'package:http/http.dart' as http;
 import 'package:pampacare/app/pages/components/debouncer.dart';
 
 import 'package:pampacare/app/pages/components/title_subtitle_component.dart';
+import 'package:pampacare/app/pages/components/zero_search_component.dart';
 import 'package:pampacare/app/shared/theme/app_colors.dart';
 import 'package:pampacare/app/shared/theme/app_icons.dart';
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+class SearchDogPage extends StatefulWidget {
+  const SearchDogPage({Key? key}) : super(key: key);
 
   @override
   _SearchPageState createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchPageState extends State<SearchDogPage> {
   final _debouncer = Debouncer(milliseconds: 1500);
   bool isLoading = false;
   List<Dogs> dogs = [];
@@ -59,34 +60,52 @@ class _SearchPageState extends State<SearchPage> {
             if (isLoading)
               Center(child: CircularProgressIndicator())
             else
-              Column(
-                  children: dogs.map((dog) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: dog.dog.map(
-                          (dogOfList) {
-                            return Text(
-                              dogOfList.name,
-                              style: TextStyle(
-                                  color: AppColors.primary, fontSize: 18),
-                            );
-                          },
-                        ).toList(),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        dog.street,
-                      ),
-                      SizedBox(height: 20),
-                    ],
-                  ),
-                );
-              }).toList())
+              dogs.isEmpty
+                  ? ZeroSearchComponent(
+                      subTitle: "Nenhum cão encontrado\nDeseja cadastrar um ?",
+                      onPress: () {
+                        Navigator.pushNamed(context, '/register-dog');
+                      },
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: dogs.map((dog) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: dog.dog.map(
+                              (dogOfList) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    print(dogOfList.id);
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        dogOfList.name,
+                                        style: TextStyle(
+                                            color: AppColors.primary,
+                                            fontSize: 18),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        dog.street,
+                                      ),
+                                      SizedBox(height: 20),
+                                      Divider(
+                                        height: 1,
+                                        color: AppColors.hintText,
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ).toList(),
+                          ),
+                        );
+                      }).toList()),
           ],
         ),
       ),
@@ -101,7 +120,7 @@ class _SearchPageState extends State<SearchPage> {
       'street': query,
     };
 
-    final uri = Uri.http('192.168.1.85:3000', '/dogs/dogs', queryParameters);
+    final uri = Uri.http('192.168.1.85:3333', '/dogs', queryParameters);
 
     final response = await http.get(uri);
     if (response.statusCode == 200) {
@@ -137,19 +156,20 @@ class Dogs {
 }
 
 class Dog {
+  final String id;
   final String name;
   final int breed;
 
-  Dog({required this.name, required this.breed});
+  Dog({required this.id, required this.name, required this.breed});
 
   factory Dog.fromJson(Map<String, dynamic> json) {
-    return Dog(name: json['name'], breed: json['breed_id']);
+    return Dog(id: json['id'], name: json['name'], breed: json['breed_id']);
   }
 
   static List<Dog> fromArray(List<dynamic> list) =>
       list.map((element) => Dog.fromJson(element)).toList();
 
   Map<String, dynamic> toMap() {
-    return {'name': name, 'breed_id': breed};
+    return {'id': id, 'name': name, 'breed_id': breed};
   }
 }
