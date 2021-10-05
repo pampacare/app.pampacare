@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pampacare/app/pages/appointment/new_apointment_page.dart';
 
 import 'package:pampacare/app/pages/components/option_button.dart';
 import 'package:pampacare/app/pages/components/title_subtitle_component.dart';
@@ -31,7 +32,14 @@ class _OptionsPageState extends State<OptionsPage> {
             Column(
               children: [
                 OptionButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NewAppointmentPage(
+                                  dog: widget.dog,
+                                )));
+                  },
                   title: 'Cadastrar nova consulta',
                   icon: AppIcons.dog,
                 ),

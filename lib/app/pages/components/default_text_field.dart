@@ -39,6 +39,7 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
                   padding: const EdgeInsets.only(left: 30.0, right: 17),
                   child: SvgPicture.asset(
                     widget.icon!,
+                    color: AppColors.hintText,
                     fit: BoxFit.fitHeight,
                   ),
                 )

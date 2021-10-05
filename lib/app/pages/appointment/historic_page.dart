@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:pampacare/app/pages/appointment/controller/appointment_controller.dart';
 
 import 'package:pampacare/app/pages/components/add_button.dart';
 import 'package:pampacare/app/pages/components/title_subtitle_component.dart';
@@ -18,6 +20,14 @@ class HistoricPage extends StatefulWidget {
 }
 
 class _HistoricPageState extends State<HistoricPage> {
+  final AppointmentController controller = GetIt.I<AppointmentController>();
+
+  @override
+  void initState() {
+    controller.dog = widget.dog;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +43,8 @@ class _HistoricPageState extends State<HistoricPage> {
                   height: 50,
                 ),
                 TitleSubtitleComponent(
-                    title: 'Aqui está tudo sobre', subtitle: 'o Caramelo.'),
+                    title: 'Aqui está tudo sobre',
+                    subtitle: 'o ${controller.dog!.name}.'),
                 SizedBox(
                   height: 70,
                 ),

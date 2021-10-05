@@ -7,7 +7,7 @@ import 'package:pampacare/app/pages/components/debouncer.dart';
 
 import 'package:pampacare/app/pages/components/title_subtitle_component.dart';
 import 'package:pampacare/app/pages/components/zero_search_component.dart';
-import 'package:pampacare/app/pages/historic/historic_page.dart';
+import 'package:pampacare/app/pages/appointment/historic_page.dart';
 import 'package:pampacare/app/shared/models/dogs.dart';
 import 'package:pampacare/app/shared/theme/app_colors.dart';
 import 'package:pampacare/app/shared/theme/app_icons.dart';
