@@ -31,82 +31,85 @@ class _SearchPageState extends State<SearchDogPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(40.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TitleSubtitleComponent(
-                title: 'Para começar,', subtitle: 'digite o endereço'),
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(100))),
-                hintText: 'Endereço',
-                filled: true,
-                fillColor: AppColors.textField,
-                prefixIcon: SvgPicture.asset(
-                  AppIcons.search,
-                  height: 50,
-                  width: 50,
-                  fit: BoxFit.scaleDown,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(40.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TitleSubtitleComponent(
+                  title: 'Para começar,', subtitle: 'digite o endereço'),
+              TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(100))),
+                  hintText: 'Endereço',
+                  filled: true,
+                  fillColor: AppColors.textField,
+                  prefixIcon: SvgPicture.asset(
+                    AppIcons.search,
+                    height: 50,
+                    width: 50,
+                    fit: BoxFit.scaleDown,
+                  ),
                 ),
+                onChanged: (value) =>
+                    _debouncer.run(() => onSearchChanged(value)),
               ),
-              onChanged: (value) =>
-                  _debouncer.run(() => onSearchChanged(value)),
-            ),
-            SizedBox(),
-            if (isLoading)
-              Center(child: CircularProgressIndicator())
-            else
-              dogs.isEmpty
-                  ? ZeroSearchComponent(
-                      subTitle: "Nenhum cão encontrado\nDeseja cadastrar um ?",
-                      onPress: () {
-                        Navigator.pushNamed(context, '/register-dog');
-                      },
-                    )
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: dogs.map((dog) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: dog.dog.map(
-                              (dogOfList) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    print(dogOfList.id);
-                                  },
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        dogOfList.name,
-                                        style: TextStyle(
-                                            color: AppColors.primary,
-                                            fontSize: 18),
-                                      ),
-                                      SizedBox(height: 10),
-                                      Text(
-                                        dog.street,
-                                      ),
-                                      SizedBox(height: 20),
-                                      Divider(
-                                        height: 1,
-                                        color: AppColors.hintText,
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ).toList(),
-                          ),
-                        );
-                      }).toList()),
-          ],
+              SizedBox(),
+              if (isLoading)
+                Center(child: CircularProgressIndicator())
+              else
+                dogs.isEmpty
+                    ? ZeroSearchComponent(
+                        subTitle:
+                            "Nenhum cão encontrado\nDeseja cadastrar um ?",
+                        onPress: () {
+                          Navigator.pushNamed(context, '/register-dog');
+                        },
+                      )
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: dogs.map((dog) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: dog.dog.map(
+                                (dogOfList) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      print(dogOfList.id);
+                                    },
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          dogOfList.name,
+                                          style: TextStyle(
+                                              color: AppColors.primary,
+                                              fontSize: 18),
+                                        ),
+                                        SizedBox(height: 10),
+                                        Text(
+                                          dog.street,
+                                        ),
+                                        SizedBox(height: 20),
+                                        Divider(
+                                          height: 1,
+                                          color: AppColors.hintText,
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ).toList(),
+                            ),
+                          );
+                        }).toList()),
+            ],
+          ),
         ),
       ),
     );
@@ -120,7 +123,8 @@ class _SearchPageState extends State<SearchDogPage> {
       'street': query,
     };
 
-    final uri = Uri.http('192.168.1.85:3333', '/dogs', queryParameters);
+    final uri = Uri.http(
+        'api-gateway-pampacare.herokuapp.com', '/dogs/dogs', queryParameters);
 
     final response = await http.get(uri);
     if (response.statusCode == 200) {
