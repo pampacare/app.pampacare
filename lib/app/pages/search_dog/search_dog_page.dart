@@ -6,17 +6,18 @@ import 'package:http/http.dart' as http;
 import 'package:pampacare/app/pages/components/debouncer.dart';
 
 import 'package:pampacare/app/pages/components/title_subtitle_component.dart';
+import 'package:pampacare/app/pages/components/zero_search_component.dart';
 import 'package:pampacare/app/shared/theme/app_colors.dart';
 import 'package:pampacare/app/shared/theme/app_icons.dart';
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+class SearchDogPage extends StatefulWidget {
+  const SearchDogPage({Key? key}) : super(key: key);
 
   @override
   _SearchPageState createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchPageState extends State<SearchDogPage> {
   final _debouncer = Debouncer(milliseconds: 1500);
   bool isLoading = false;
   List<Dogs> dogs = [];
@@ -59,38 +60,46 @@ class _SearchPageState extends State<SearchPage> {
             if (isLoading)
               Center(child: CircularProgressIndicator())
             else
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: dogs.map((dog) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: dog.dog.map(
-                          (dogOfList) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  dogOfList.name,
-                                  style: TextStyle(
-                                      color: AppColors.primary, fontSize: 18),
-                                ),
-                                SizedBox(height: 10),
-                                Text(
-                                  dog.street,
-                                ),
-                                SizedBox(height: 20),
-                                Divider(
-                                  height: 1,
-                                  color: AppColors.hintText,
-                                ),
-                              ],
-                            );
-                          },
-                        ).toList(),
-                      ),
-                    );
-                  }).toList()),
+              dogs.isEmpty
+                  ? ZeroSearchComponent(
+                      subTitle: "Nenhum cão encontrado\nDeseja cadastrar um ?",
+                      onPress: () {
+                        Navigator.pushNamed(context, '/register-dog');
+                      },
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: dogs.map((dog) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: dog.dog.map(
+                              (dogOfList) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      dogOfList.name,
+                                      style: TextStyle(
+                                          color: AppColors.primary,
+                                          fontSize: 18),
+                                    ),
+                                    SizedBox(height: 10),
+                                    Text(
+                                      dog.street,
+                                    ),
+                                    SizedBox(height: 20),
+                                    Divider(
+                                      height: 1,
+                                      color: AppColors.hintText,
+                                    ),
+                                  ],
+                                );
+                              },
+                            ).toList(),
+                          ),
+                        );
+                      }).toList()),
           ],
         ),
       ),
@@ -105,7 +114,7 @@ class _SearchPageState extends State<SearchPage> {
       'street': query,
     };
 
-    final uri = Uri.http('192.168.1.85:3000', '/dogs/dogs', queryParameters);
+    final uri = Uri.http('192.168.1.85:3333', '/dogs', queryParameters);
 
     final response = await http.get(uri);
     if (response.statusCode == 200) {
