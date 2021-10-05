@@ -176,7 +176,8 @@ class _SearchOwnerPageState extends State<SearchOwnerPage> {
       'street': query,
     };
 
-    final uri = Uri.http('192.168.1.85:3333', '/owners', queryParameters);
+    final uri = Uri.http(
+        'api-gateway-pampacare.herokuapp.com', '/dogs/owners', queryParameters);
 
     final response = await http.get(uri);
     if (response.statusCode == 200) {

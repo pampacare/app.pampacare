@@ -24,8 +24,9 @@ class _SearchPageState extends State<SearchDogPage> {
   List<Dog> dog = [];
 
   @override
-  void dispose() {
-    super.dispose();
+  void initState() {
+    super.initState();
+    onSearchChanged('a');
   }
 
   @override
@@ -38,8 +39,10 @@ class _SearchPageState extends State<SearchDogPage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 80),
               TitleSubtitleComponent(
                   title: 'Para começar,', subtitle: 'digite o endereço'),
+              SizedBox(height: 80),
               TextFormField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -57,7 +60,7 @@ class _SearchPageState extends State<SearchDogPage> {
                 onChanged: (value) =>
                     _debouncer.run(() => onSearchChanged(value)),
               ),
-              SizedBox(),
+              SizedBox(height: 80),
               if (isLoading)
                 Center(child: CircularProgressIndicator())
               else
