@@ -38,29 +38,37 @@ class _RegisterDogPageState extends State<RegisterOwnerPage> {
                     onChanged: (value) => controller.setName(value),
                   ),
                   SizedBox(
-                    height: 16,
+                    height: 28,
                   ),
-                  DefaultTextField(
-                    withPadding: false,
-                    hint: "CEP",
-                    onChanged: (value) => controller.setBreed(value),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: DefaultTextField(
+                          withPadding: false,
+                          hint: "CEP",
+                          onChanged: (value) => controller.setBreed(value),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 28,
+                      ),
+                      Expanded(
+                        child: DefaultTextField(
+                          withPadding: false,
+                          hint: "Número",
+                          onChanged: (value) => controller.setBirthday(value),
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
-                    height: 16,
-                  ),
-                  DefaultTextField(
-                    withPadding: false,
-                    hint: "Número da residência",
-                    onChanged: (value) => controller.setBirthday(value),
-                  ),
-                  SizedBox(
-                    height: 25,
+                    height: 28,
                   ),
                   Text(
                       'Inserimos o CEP automaticamente com base no seu local. Se não for este o local, fique a vontade para alterá-lo.',
                       style: TextStyle(color: Colors.grey, fontSize: 12)),
                   SizedBox(
-                    height: 25,
+                    height: 28,
                   ),
                   DefaultButton(
                       onPressed: () {
