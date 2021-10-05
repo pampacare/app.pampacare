@@ -38,6 +38,7 @@ class _RegisterDogPageState extends State<RegisterDogPage> {
                   DefaultTextField(
                     withPadding: false,
                     hint: "Nome",
+                    onChanged: (value) => controller.setName(value),
                   ),
                   SizedBox(
                     height: 16,
@@ -45,6 +46,7 @@ class _RegisterDogPageState extends State<RegisterDogPage> {
                   DefaultTextField(
                     withPadding: false,
                     hint: "Raça",
+                    onChanged: (value) => controller.setBreed(value),
                   ),
                   SizedBox(
                     height: 16,
@@ -52,6 +54,7 @@ class _RegisterDogPageState extends State<RegisterDogPage> {
                   DefaultTextField(
                     withPadding: false,
                     hint: "Ano de nascimento",
+                    onChanged: (value) => controller.setBirthday(value),
                   ),
                   SizedBox(
                     height: 25,
