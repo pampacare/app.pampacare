@@ -29,20 +29,16 @@ class _NewAppointmentPageState extends State<NewAppointmentPage> {
                   SizedBox(
                     height: 32,
                   ),
-                 
-            
                   SizedBox(
                     height: 64,
                   ),
-                  
-                     Image.asset(
-                  AppImages.dog_pink,
-                  fit: BoxFit.contain,
-                ),
-                SizedBox(
+                  Image.asset(
+                    AppImages.dogPink,
+                    fit: BoxFit.contain,
+                  ),
+                  SizedBox(
                     height: 16,
                   ),
-
                   DefaultTextField(
                     withPadding: false,
                     hint: "Data da consulta",
@@ -57,9 +53,6 @@ class _NewAppointmentPageState extends State<NewAppointmentPage> {
                   SizedBox(
                     height: 25,
                   ),
-
-
-                 
                   SizedBox(
                     height: 50,
                   ),

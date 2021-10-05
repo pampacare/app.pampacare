@@ -7,6 +7,7 @@ import 'package:pampacare/app/pages/components/debouncer.dart';
 
 import 'package:pampacare/app/pages/components/title_subtitle_component.dart';
 import 'package:pampacare/app/pages/components/zero_search_component.dart';
+import 'package:pampacare/app/shared/models/dogs.dart';
 import 'package:pampacare/app/shared/theme/app_colors.dart';
 import 'package:pampacare/app/shared/theme/app_icons.dart';
 
@@ -80,9 +81,9 @@ class _SearchPageState extends State<SearchDogPage> {
                             child: Column(
                               children: dog.dog.map(
                                 (dogOfList) {
-                                  return GestureDetector(
+                                  return InkWell(
                                     onTap: () {
-                                      print(dogOfList.id);
+                                      Navigator.pushNamed(context, '/historic');
                                     },
                                     child: Column(
                                       crossAxisAlignment:
@@ -141,42 +142,5 @@ class _SearchPageState extends State<SearchDogPage> {
       });
       throw Exception('Failed to load');
     }
-  }
-}
-
-class Dogs {
-  final String street;
-  final List<Dog> dog;
-
-  Dogs({required this.street, required this.dog});
-
-  factory Dogs.fromJson(Map<String, dynamic> json) {
-    return Dogs(street: json['street'], dog: Dog.fromArray(json['dog']));
-  }
-
-  static List<Dogs> fromArray(List<dynamic> list) =>
-      list.map((element) => Dogs.fromJson(element)).toList();
-
-  Map<String, dynamic> toMap() {
-    return {'street': street, 'dog': dog};
-  }
-}
-
-class Dog {
-  final String id;
-  final String name;
-  final int breed;
-
-  Dog({required this.id, required this.name, required this.breed});
-
-  factory Dog.fromJson(Map<String, dynamic> json) {
-    return Dog(id: json['id'], name: json['name'], breed: json['breed_id']);
-  }
-
-  static List<Dog> fromArray(List<dynamic> list) =>
-      list.map((element) => Dog.fromJson(element)).toList();
-
-  Map<String, dynamic> toMap() {
-    return {'id': id, 'name': name, 'breed_id': breed};
   }
 }
