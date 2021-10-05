@@ -33,7 +33,7 @@ class _NewAppointmentPageState extends State<NewAppointmentPage> {
                     height: 64,
                   ),
                   Image.asset(
-                    AppImages.dogPink,
+                    AppImages.dog_pink,
                     fit: BoxFit.contain,
                   ),
                   SizedBox(
