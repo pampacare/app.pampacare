@@ -26,6 +26,9 @@ class _HistoricPageState extends State<HistoricPage> {
   void initState() {
     controller.dog = widget.dog;
     super.initState();
+    controller.getHistoric().then((value) {
+      setState(() {});
+    });
   }
 
   @override
@@ -76,6 +79,12 @@ class _HistoricPageState extends State<HistoricPage> {
                 SizedBox(
                   height: 50,
                 ),
+                if (controller.historicList.isNotEmpty)
+                  Column(
+                    children: controller.historicList
+                        .map((e) => Text(e.observation))
+                        .toList(),
+                  ),
                 Image.asset(
                   AppImages.dog,
                   fit: BoxFit.contain,

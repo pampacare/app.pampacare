@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:pampacare/app/shared/models/dogs.dart';
+import 'package:pampacare/app/shared/models/historic.dart';
 import 'package:pampacare/app/shared/models/symptoms.dart';
 import 'package:http/http.dart' as http;
 import 'package:pampacare/app/shared/models/test.dart';
@@ -14,6 +15,7 @@ class AppointmentController {
   List<Test> testList = [];
   List<Test> testDog = [];
   bool hasLvc = false;
+  List<Historic> historicList = [];
   String treatment = '';
 
   Future<void> getSymptoms() async {
@@ -40,9 +42,10 @@ class AppointmentController {
     final uri = Uri.parse(
         'https://api-gateway-pampacare.herokuapp.com/exams/${dog!.id}');
 
-    final response = await http.get(uri);
-    if (response.statusCode == 201) {
-      testList = Test.fromArray(json.decode(response.body)['body']);
+    final response =
+        await http.get(uri, headers: {'Content-Type': 'application/json'});
+    if (response.statusCode == 200) {
+      historicList = Historic.fromArray(json.decode(response.body)['body']);
     }
   }
 
@@ -54,15 +57,16 @@ class AppointmentController {
     for (var item in symptomsDog) {
       listMaps.add(item.toMap());
     }
-    final object = {
-      "lvc": hasLvc,
-      "dogId": dog!.id,
-      "observation": observations,
-      "symptomExamId": listMaps,
-      "treatmentDescription": treatment,
-      "testId": testDog.first.id
-    };
-    final response = await http.post(uri, body: json.encode(object));
+    var client = http.Client();
+    final response = await client.post(uri,
+        body: jsonEncode({
+          "observation": observations,
+          "lvc": true,
+          "dogId": dog!.id,
+          "symptomExamId": listMaps,
+          "treatmentDescription": treatment,
+          "testId": testDog.first.id
+        }));
     if (response.statusCode == 200) {
       print(response);
     }
