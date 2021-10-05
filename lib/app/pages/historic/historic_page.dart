@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'package:pampacare/app/pages/components/add_button.dart';
 import 'package:pampacare/app/pages/components/title_subtitle_component.dart';
+import 'package:pampacare/app/pages/options/options_page.dart';
+import 'package:pampacare/app/shared/models/dogs.dart';
 import 'package:pampacare/app/shared/theme/app_images.dart';
 
 class HistoricPage extends StatefulWidget {
-  const HistoricPage({Key? key}) : super(key: key);
+  final Dog dog;
+  const HistoricPage({
+    Key? key,
+    required this.dog,
+  }) : super(key: key);
 
   @override
   _HistoricPageState createState() => _HistoricPageState();
@@ -34,7 +41,13 @@ class _HistoricPageState extends State<HistoricPage> {
                   children: [
                     AddButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/options');
+                        //print(widget.dog!.toMap());
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => OptionsPage(
+                                      dog: widget.dog,
+                                    )));
                       },
                       title: 'Adicionar nova consulta',
                     ),
