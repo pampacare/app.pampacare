@@ -39,15 +39,11 @@ class _SearchOwnerPageState extends State<SearchOwnerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 50,
-            ),
+            SizedBox(height: 80),
             TitleSubtitleComponent(
                 title: 'Certo, vamos achar',
                 subtitle: 'um dono para esse cãozinho'),
-            SizedBox(
-              height: 50,
-            ),
+            SizedBox(height: 80),
             TextFormField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(
@@ -65,10 +61,7 @@ class _SearchOwnerPageState extends State<SearchOwnerPage> {
               onChanged: (value) =>
                   _debouncer.run(() => onSearchChanged(value)),
             ),
-            SizedBox(
-              height: 50,
-            ),
-
+            SizedBox(height: 80),
             if (isLoading)
               Center(child: CircularProgressIndicator())
             else
@@ -177,7 +170,7 @@ class _SearchOwnerPageState extends State<SearchOwnerPage> {
     };
 
     final uri = Uri.http(
-        'api-gateway-pampacare.herokuapp.com', '/dogs/owners', queryParameters);
+        'api-gateway-pampacare.herokuapp.com', '/dogs/owner', queryParameters);
 
     final response = await http.get(uri);
     if (response.statusCode == 200) {
