@@ -77,6 +77,10 @@ class _RegisterDogPageState extends State<RegisterOwnerPage> {
                       title: "Cadastrar")
                 ]),
           )),
+      // Image.asset(
+      //       AppImages.dog_2,
+      //       fit: BoxFit.contain,
+      //     )
     );
   }
 }
