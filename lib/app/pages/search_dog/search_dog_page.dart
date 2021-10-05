@@ -75,25 +75,31 @@ class _SearchPageState extends State<SearchDogPage> {
                           child: Column(
                             children: dog.dog.map(
                               (dogOfList) {
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      dogOfList.name,
-                                      style: TextStyle(
-                                          color: AppColors.primary,
-                                          fontSize: 18),
-                                    ),
-                                    SizedBox(height: 10),
-                                    Text(
-                                      dog.street,
-                                    ),
-                                    SizedBox(height: 20),
-                                    Divider(
-                                      height: 1,
-                                      color: AppColors.hintText,
-                                    ),
-                                  ],
+                                return GestureDetector(
+                                  onTap: () {
+                                    print(dogOfList.id);
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        dogOfList.name,
+                                        style: TextStyle(
+                                            color: AppColors.primary,
+                                            fontSize: 18),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        dog.street,
+                                      ),
+                                      SizedBox(height: 20),
+                                      Divider(
+                                        height: 1,
+                                        color: AppColors.hintText,
+                                      ),
+                                    ],
+                                  ),
                                 );
                               },
                             ).toList(),
@@ -150,19 +156,20 @@ class Dogs {
 }
 
 class Dog {
+  final String id;
   final String name;
   final int breed;
 
-  Dog({required this.name, required this.breed});
+  Dog({required this.id, required this.name, required this.breed});
 
   factory Dog.fromJson(Map<String, dynamic> json) {
-    return Dog(name: json['name'], breed: json['breed_id']);
+    return Dog(id: json['id'], name: json['name'], breed: json['breed_id']);
   }
 
   static List<Dog> fromArray(List<dynamic> list) =>
       list.map((element) => Dog.fromJson(element)).toList();
 
   Map<String, dynamic> toMap() {
-    return {'name': name, 'breed_id': breed};
+    return {'id': id, 'name': name, 'breed_id': breed};
   }
 }
