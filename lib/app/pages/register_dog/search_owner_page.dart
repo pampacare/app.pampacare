@@ -2,11 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:pampacare/app/pages/components/debouncer.dart';
 import 'package:pampacare/app/pages/components/title_subtitle_component.dart';
 import 'package:pampacare/app/pages/components/zero_search_component.dart';
+import 'package:pampacare/app/pages/register_dog/controller/register_dog_controller.dart';
 import 'package:pampacare/app/shared/theme/app_colors.dart';
 import 'package:pampacare/app/shared/theme/app_icons.dart';
 
@@ -18,10 +20,11 @@ class SearchOwnerPage extends StatefulWidget {
 }
 
 class _SearchOwnerPageState extends State<SearchOwnerPage> {
+  final IRegisterDogController controller = GetIt.I<IRegisterDogController>();
+
   final _debouncer = Debouncer(milliseconds: 1500);
   bool isLoading = false;
   List<Owners> owners = [];
-  List<Owner> owner = [];
 
   @override
   void dispose() {
@@ -79,37 +82,43 @@ class _SearchOwnerPageState extends State<SearchOwnerPage> {
                     )
                   : Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: owners.map((owner) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: owner.owner.map(
-                              (ownerOfList) {
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      owner.name,
-                                      style: TextStyle(
-                                          color: AppColors.primary,
-                                          fontSize: 18),
-                                    ),
-                                    SizedBox(height: 10),
-                                    Text(
-                                      owner.street,
-                                    ),
-                                    SizedBox(height: 20),
-                                    Divider(
-                                      height: 1,
-                                      color: AppColors.hintText,
-                                    ),
-                                  ],
-                                );
+                      children: owners.map(
+                        (owner) {
+                          return GestureDetector(
+                              onTap: () {
+                                controller.setOwnerId(owner.id);
+                                try {
+                                  controller.registerDog();
+                                  Navigator.pushNamed(context, '/historic');
+                                } catch (e) {
+                                  print(e);
+                                }
                               },
-                            ).toList(),
-                          ),
-                        );
-                      }).toList()),
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        owner.name,
+                                        style: TextStyle(
+                                            color: AppColors.primary,
+                                            fontSize: 18),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        owner.street,
+                                      ),
+                                      SizedBox(height: 20),
+                                      Divider(
+                                        height: 1,
+                                        color: AppColors.hintText,
+                                      ),
+                                    ],
+                                  )));
+                        },
+                      ).toList()),
 
             // if (isLoading)
             //   Center(child: CircularProgressIndicator())
@@ -185,41 +194,28 @@ class _SearchOwnerPageState extends State<SearchOwnerPage> {
 }
 
 class Owners {
+  final String id;
   final String name;
   final String street;
-  final List<Owner> owner;
 
-  Owners({required this.name, required this.street, required this.owner});
+  Owners({
+    required this.id,
+    required this.name,
+    required this.street,
+  });
 
   factory Owners.fromJson(Map<String, dynamic> json) {
     return Owners(
-        name: json['name'],
-        street: json['street'],
-        owner: Owner.fromArray(json['dog']));
+      id: json['id'],
+      name: json['name'],
+      street: json['street'],
+    );
   }
 
   static List<Owners> fromArray(List<dynamic> list) =>
       list.map((element) => Owners.fromJson(element)).toList();
 
   Map<String, dynamic> toMap() {
-    return {'name': name, 'street': street, 'owner': owner};
-  }
-}
-
-class Owner {
-  final String name;
-  final int breed;
-
-  Owner({required this.name, required this.breed});
-
-  factory Owner.fromJson(Map<String, dynamic> json) {
-    return Owner(name: json['name'], breed: json['breed_id']);
-  }
-
-  static List<Owner> fromArray(List<dynamic> list) =>
-      list.map((element) => Owner.fromJson(element)).toList();
-
-  Map<String, dynamic> toMap() {
-    return {'name': name, 'breed_id': breed};
+    return {'id': id, 'name': name, 'street': street};
   }
 }
