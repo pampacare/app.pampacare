@@ -8,6 +8,7 @@ import 'package:pampacare/app/pages/splash/splash_page.dart';
 
 import 'package:pampacare/app/pages/historic/historic_page.dart';
 import 'package:pampacare/app/pages/treatments/treatments_page.dart';
+import 'package:pampacare/app/pages/new_appointment/new_apointment_page.dart';
 
 import 'package:pampacare/app/shared/container/injection.dart';
 import 'package:pampacare/app/shared/theme/app_colors.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         '/register-dog': (context) => RegisterDogPage(),
         '/search-dog': (context) => SearchDogPage(),
         '/search-owner': (context) => SearchOwnerPage(),
+        '/new-appointment': (context) => NewAppointmentPage(),
       },
     );
   }
