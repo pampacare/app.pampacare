@@ -36,6 +36,16 @@ class AppointmentController {
     }
   }
 
+  Future<void> getHistoric() async {
+    final uri = Uri.parse(
+        'https://api-gateway-pampacare.herokuapp.com/exams/${dog!.id}');
+
+    final response = await http.get(uri);
+    if (response.statusCode == 201) {
+      testList = Test.fromArray(json.decode(response.body)['body']);
+    }
+  }
+
   Future<void> registerExam() async {
     final uri = Uri.parse(
         'https://api-gateway-pampacare.herokuapp.com/exams/register-exam');
@@ -44,16 +54,17 @@ class AppointmentController {
     for (var item in symptomsDog) {
       listMaps.add(item.toMap());
     }
-    final response = await http.post(uri, body: {
-      'lvc': hasLvc,
-      'dogId': dog!.id,
-      'observation': observations,
-      'symptomExamId': listMaps,
-      'treatmentDescription': treatment,
-      'testId': testDog.first.id
-    });
-    if (response.statusCode == 201) {
-      testList = Test.fromArray(json.decode(response.body)['body']);
+    final object = {
+      "lvc": hasLvc,
+      "dogId": dog!.id,
+      "observation": observations,
+      "symptomExamId": listMaps,
+      "treatmentDescription": treatment,
+      "testId": testDog.first.id
+    };
+    final response = await http.post(uri, body: json.encode(object));
+    if (response.statusCode == 200) {
+      print(response);
     }
   }
 }

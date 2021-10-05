@@ -92,7 +92,33 @@ class _TestsPageState extends State<TestsPage> {
                   });
                 }),
             const SizedBox(height: 30),
-            DefaultButton(onPressed: () {}, title: "CONCLUIR")
+            DefaultButton(
+                onPressed: () async {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                            title: Text("Salvando informações"),
+                            content: LinearProgressIndicator(
+                              color: AppColors.primary,
+                            ));
+                      });
+                  await controller.registerExam().then((value) {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Consulta cadastrada com sucesso!"),
+                          );
+                        });
+                  });
+                },
+                title: "CONCLUIR")
           ],
         ),
       ),
